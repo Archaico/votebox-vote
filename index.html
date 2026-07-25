@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VoteBox — You've been invited to vote</title>
-  <meta name="description" content="A proposal is waiting for your voice. Download VoteBox to participate." />
+  <title>VoteBoxApp — You've been invited to vote</title>
+  <meta name="description" content="A proposal is waiting for your voice. Download VoteBoxApp to participate." />
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="You've been invited to vote on VoteBox" />
+  <meta property="og:title" content="You've been invited to vote on VoteBoxApp" />
   <meta property="og:description" content="A decentralized vote is waiting for your voice. Free. Verifiable. On-chain." />
   <meta property="og:image" content="https://voteboxapp.com/images/voteboxapp-logo.png" />
 
@@ -396,8 +396,8 @@
   <!-- HEADER -->
   <div class="top-bar">
     <img class="logo" src="https://voteboxapp.com/images/voteboxapp-logo.png"
-         onerror="this.style.display='none'" alt="VoteBox" />
-    <span class="brand">VoteBox</span>
+         onerror="this.style.display='none'" alt="VoteBoxApp" />
+    <span class="brand">VoteBoxApp</span>
     <span class="tagline">Decentralized democracy</span>
   </div>
 
@@ -454,7 +454,7 @@
     <!-- CTA -->
     <div class="cta-section">
       <p class="cta-eyebrow">To cast your vote, you need the app</p>
-      <h3>Download VoteBox — it's free</h3>
+      <h3>Download VoteBoxApp — it's free</h3>
       <p class="cta-sub">Voting is always free. No account. No ads. No data collection. Just democracy.</p>
 
       <!-- REPLACE THE HREF BELOW WITH YOUR GITHUB RELEASES URL -->
@@ -482,7 +482,7 @@
     <div class="footer-logo">
       <img src="https://voteboxapp.com/images/lgc-logo.png"
            onerror="this.style.display='none'" alt="LGC" />
-      <span>VoteBox by LGC</span>
+      <span>VoteBoxApp by LGC</span>
     </div>
     <a href="https://voteboxapp.com">voteboxapp.com</a>
     &nbsp;·&nbsp;
@@ -502,6 +502,16 @@
       'https://ipfs.io/ipfs/',
     ];
 
+    // ── 0. Restore path if redirected via 404.html ────────
+    (function() {
+      var redirect = sessionStorage.getItem('vbRedirect');
+      if (redirect && redirect !== '/') {
+        sessionStorage.removeItem('vbRedirect');
+        window.history.replaceState(null, '', redirect);
+      }
+    })();
+
+    // ── 1. Read proposal ID from URL ──────────────────────
     function getProposalIdFromUrl() {
       const parts = window.location.pathname.split('/').filter(Boolean);
       const idx = parts.indexOf('vote');
@@ -586,7 +596,7 @@
         e.preventDefault();
       });
 
-      document.title = `VoteBox — ${proposal.title || 'Vote now'}`;
+      document.title = `VoteBoxApp — ${proposal.title || 'Vote now'}`;
     }
 
     function showError() {

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>VoteBox</title>
+  <script>
+    // GitHub Pages 404 redirect trick for single-page apps
+    // Stores the full path in sessionStorage and redirects to index.html
+    // index.html then reads it back and restores the correct URL
+    var path = window.location.pathname;
+    sessionStorage.setItem('vbRedirect', path);
+    window.location.replace('/');
+  </script>
+</head>
+<body></body>
+</html>
